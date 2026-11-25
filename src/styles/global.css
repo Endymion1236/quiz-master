@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { min-height: 100vh; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(145deg, #0a0e1a 0%, #0f172a 50%, #1a1035 100%);
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+
+/* Screen mode - stable background (no animation to prevent TV vibration) */
+.screen-bg {
+  background: linear-gradient(135deg, #0a0e1a 0%, #12082a 50%, #0a1628 100%);
+}
+
+/* Custom image backgrounds for TV screens */
+.screen-bg-lobby {
+  background: linear-gradient(135deg, #0a0e1a 0%, #12082a 50%, #0a1628 100%);
+  background-image: url('/images/lobby-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.screen-bg-lobby::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.55);
+  z-index: 0;
+}
+.screen-bg-lobby > * { position: relative; z-index: 1; }
+
+.screen-bg-question {
+  background: linear-gradient(135deg, #0a0e1a 0%, #12082a 50%, #0a1628 100%);
+  background-image: url('/images/question-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.screen-bg-question::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.6);
+  z-index: 0;
+}
+.screen-bg-question > * { position: relative; z-index: 1; }
+
+.screen-bg-podium {
+  background: linear-gradient(135deg, #0a0e1a 0%, #12082a 50%, #0a1628 100%);
+  background-image: url('/images/podium-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.screen-bg-podium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.5);
+  z-index: 0;
+}
+.screen-bg-podium > * { position: relative; z-index: 1; }
+
+/* TV safe area - accounts for overscan on TVs that crop edges */
+.tv-safe {
+  padding: clamp(16px, 3vw, 48px);
+  padding-bottom: clamp(24px, 4vw, 64px);
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes barGrow { from { width: 0; } }
+
+/* Utility animations */
+@layer utilities {
+  .animate-bar-grow { animation: barGrow 0.8s ease-out; }
+}

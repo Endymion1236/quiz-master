@@ -1,0 +1,8 @@
+node_modules/
+public_build/
+dist/
+.firebase/
+*.log
+.DS_Store
+.env
+.env.*

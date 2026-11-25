@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Sessions de quiz : lecture/écriture publique (quiz en soirée)
+    match /sessions/{sessionId} {
+      allow read, write: if true;
+    }
+    match /sessions/{sessionId}/{sub=**} {
+      allow read, write: if true;
+    }
+
+    // Banque de quiz : lecture/écriture publique
+    match /quizzes/{quizId} {
+      allow read, write: if true;
+    }
+    match /quizzes/{quizId}/{sub=**} {
+      allow read, write: if true;
+    }
+  }
+}
